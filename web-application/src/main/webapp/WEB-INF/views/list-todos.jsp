@@ -1,0 +1,51 @@
+<%@ include file="../common/header.jspf" %>
+<%@ include file="../common/navigation.jspf" %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Todos</title>
+<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<style>
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	background-color: #f5f5f5;
+}
+</style>
+</head>
+
+<body>
+
+	<div class="container">
+		<H1>Welcome ${name}</H1>
+
+		Your Todos are
+		<ol>
+			<c:forEach items="${todos}" var="todo">
+				<li>${todo.name}&nbsp;<a
+					href="/delete-todo.do?todo=${todo.name}">Delete</a></li>
+			</c:forEach>
+		</ol>
+
+		<p>
+			<font color="red">${errorMessage}</font>
+		</p>
+		<form method="POST" action="/add-todo.do">
+			New Todo : <input name="todo" type="text" /> <input name="add"
+				type="submit" />
+		</form>
+	</div>
+
+	<%@ include file="../common/footer.jspf" %>
+	<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+	<script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
